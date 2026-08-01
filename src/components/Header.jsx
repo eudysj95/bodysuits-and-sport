@@ -43,18 +43,18 @@ function Header({ back = false, backTo = '' }) {
           <BackIcon />
         </button>
       )}
-      <Link to="/" className="header__brand" aria-label="BodysMedTop — inicio">
+      <Link to="/" className="header__brand" aria-label="BodySuits and Sport — inicio">
         <span className="header__logo" aria-hidden="true">
           B
         </span>
         <span className="header__text">
-          <span className="header__name">BodysMedTop</span>
+          <span className="header__name">BodySuits and Sport</span>
           {!back && <span className="header__tagline">Bodys, enterizos y calzas</span>}
         </span>
       </Link>
       <a
         className="header__whatsapp"
-        href={whatsappLink('Hola BodysMedTop, quiero hacer una consulta.')}
+        href={whatsappLink('Hola BodySuits and Sport, quiero hacer una consulta.')}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Consultar por WhatsApp"

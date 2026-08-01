@@ -53,7 +53,7 @@ function BottomNav() {
       })}
       <a
         className="bottom-nav__item bottom-nav__item--whatsapp"
-        href={whatsappLink('Hola BodysMedTop, quiero hacer una consulta.')}
+        href={whatsappLink('Hola BodySuits and Sport, quiero hacer una consulta.')}
         target="_blank"
         rel="noopener noreferrer"
       >

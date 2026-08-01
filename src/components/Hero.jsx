@@ -16,7 +16,7 @@ function Hero() {
         </Link>
         <a
           className="hero__cta hero__cta--ghost"
-          href={whatsappLink('Hola BodysMedTop, quiero información sobre la promo 3x2.')}
+          href={whatsappLink('Hola BodySuits and Sport, quiero información sobre la promo 3x2.')}
           target="_blank"
           rel="noopener noreferrer"
         >

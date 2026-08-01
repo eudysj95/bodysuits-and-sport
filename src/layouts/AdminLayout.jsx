@@ -23,7 +23,7 @@ function AdminLayout() {
       <aside className={`admin-sidebar ${sidebarOpen ? 'admin-sidebar--open' : ''}`}>
         <div className="admin-sidebar__header">
           <span className="admin-sidebar__logo">B</span>
-          <span className="admin-sidebar__brand">BodysMedTop</span>
+          <span className="admin-sidebar__brand">BodySuits and Sport</span>
         </div>
         <nav className="admin-sidebar__nav">
           {navItems.map((item) => (
@@ -60,7 +60,7 @@ function AdminLayout() {
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
-          <h1 className="admin-header__title">BodysMedTop Admin</h1>
+          <h1 className="admin-header__title">BodySuits and Sport Admin</h1>
         </header>
         <div className="admin-content">
           <Outlet />
