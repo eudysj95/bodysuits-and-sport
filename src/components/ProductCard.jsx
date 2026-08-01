@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { formatPrice, priceForCategory, PROMO_BUNDLE_PRICE, PROMO_BUNDLE_SIZE } from '../data/products.js'
+import { formatPrice, priceForCategory, categoryLabel, PROMO_BUNDLE_PRICE, PROMO_BUNDLE_SIZE, PROMO_UNIT_PRICE } from '../data/products.js'
 import { whatsappLink } from '../config.js'
 import WhatsAppIcon from './WhatsAppIcon.jsx'
 import ProductImage from './ProductImage.jsx'
@@ -7,7 +7,11 @@ import ProductImage from './ProductImage.jsx'
 function ProductCard({ product, category = 'unidad' }) {
   const displayPrice = priceForCategory(product, category)
   const isPromo = category === 'promocion'
-  const message = `Hola BodysMedTop, me interesa "${product.name}" (${formatPrice(displayPrice)}). ¿Está disponible?`
+  const categoryText = isPromo ? `Promo 3x${formatPrice(PROMO_BUNDLE_PRICE)}` : categoryLabel(category)
+  const productUrl = `${window.location.origin}/producto/${product.id}?cat=${category}`
+  const message = isPromo
+    ? `Hola BodysMedTop 👋\n\nQuiero consultar por la promo:\n• Producto: ${product.name}\n• Promo: 3 bodys por ${formatPrice(PROMO_BUNDLE_PRICE)} (≈${formatPrice(PROMO_UNIT_PRICE)} c/u)\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
+    : `Hola BodysMedTop 👋\n\nQuiero consultar por:\n• Producto: ${product.name}\n• Modo: ${categoryText}\n• Precio: ${formatPrice(displayPrice)}\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
 
   return (
     <article className="product-card">

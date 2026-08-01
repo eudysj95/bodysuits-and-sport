@@ -4,7 +4,7 @@ import Header from '../components/Header.jsx'
 import BottomNav from '../components/BottomNav.jsx'
 import WhatsAppIcon from '../components/WhatsAppIcon.jsx'
 import ProductImage from '../components/ProductImage.jsx'
-import { products, formatPrice, priceForCategory, PROMO_BUNDLE_SIZE, PROMO_BUNDLE_PRICE } from '../data/products.js'
+import { products, formatPrice, priceForCategory, categoryLabel, PROMO_BUNDLE_SIZE, PROMO_BUNDLE_PRICE, PROMO_UNIT_PRICE } from '../data/products.js'
 import { whatsappLink } from '../config.js'
 
 function ProductDetail() {
@@ -38,7 +38,11 @@ function ProductDetail() {
   const selectedSize = selected || product.sizes[0]
   const displayPrice = priceForCategory(product, cat)
   const isPromo = cat === 'promocion'
-  const message = `Hola BodysMedTop, me interesa "${product.name}" (talla ${selectedSize}, ${formatPrice(displayPrice)}). ¿Está disponible?`
+  const categoryText = isPromo ? `Promo 3x${formatPrice(PROMO_BUNDLE_PRICE)}` : categoryLabel(cat)
+  const productUrl = `${window.location.origin}/producto/${product.id}?cat=${cat}`
+  const message = isPromo
+    ? `Hola BodysMedTop 👋\n\nQuiero consultar por la promo:\n• Producto: ${product.name}\n• Talla: ${selectedSize}\n• Promo: 3 bodys por ${formatPrice(PROMO_BUNDLE_PRICE)} (≈${formatPrice(PROMO_UNIT_PRICE)} c/u)\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
+    : `Hola BodysMedTop 👋\n\nQuiero consultar por:\n• Producto: ${product.name}\n• Talla: ${selectedSize}\n• Modo: ${categoryText}\n• Precio: ${formatPrice(displayPrice)}\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
 
   return (
     <>
