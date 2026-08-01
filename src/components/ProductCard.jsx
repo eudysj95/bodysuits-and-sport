@@ -18,7 +18,7 @@ function ProductCard({ product, category = 'unidad' }) {
       <Link
         to={`/producto/${product.id}?cat=${category}`}
         className="product-card__image-link"
-        aria-label={product.name}
+        aria-label={`Ver fotos de ${product.name}`}
       >
         <ProductImage
           className="product-card__image"
@@ -26,6 +26,11 @@ function ProductCard({ product, category = 'unidad' }) {
           alt={product.name}
           loading="lazy"
         />
+        {product.gallery.length > 0 && (
+          <span className="product-card__see-more">
+            Ver fotos ({product.gallery.length + 1})
+          </span>
+        )}
       </Link>
       <div className="product-card__body">
         <h3 className="product-card__name">
