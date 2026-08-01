@@ -7,8 +7,14 @@ import PromoBanner from '../components/PromoBanner.jsx'
 import BottomNav from '../components/BottomNav.jsx'
 import { products } from '../data/products.js'
 
+const INITIAL_VISIBLE = 4
+
 function Home() {
   const [category, setCategory] = useState('unidad')
+  const [showAll, setShowAll] = useState(false)
+
+  const visibleProducts = showAll ? products : products.slice(0, INITIAL_VISIBLE)
+  const hasMore = products.length > INITIAL_VISIBLE
 
   return (
     <>
@@ -21,9 +27,20 @@ function Home() {
             Elegí cómo querés comprar.
           </p>
         </section>
-        <CategoryChips active={category} onChange={setCategory} />
+        <CategoryChips active={category} onChange={(cat) => { setCategory(cat); setShowAll(false) }} />
         {category === 'promocion' && <PromoBanner />}
-        <ProductList products={products} category={category} />
+        <ProductList products={visibleProducts} category={category} />
+        {hasMore && !showAll && (
+          <div className="see-more">
+            <button
+              type="button"
+              className="see-more__btn"
+              onClick={() => setShowAll(true)}
+            >
+              Ver más productos
+            </button>
+          </div>
+        )}
       </main>
       <BottomNav />
     </>

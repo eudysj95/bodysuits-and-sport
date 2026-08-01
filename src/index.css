@@ -334,6 +334,31 @@ button {
   text-align: center;
 }
 
+/* See more button */
+
+.see-more {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--space-5) var(--space-7);
+}
+
+.see-more__btn {
+  padding: 12px 28px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-accent-dark);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.see-more__btn:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
 /* Product card */
 
 .product-card {
