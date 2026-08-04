@@ -29,7 +29,7 @@ function Categoria() {
         <section className="section">
           <h2 className="section__title">Catálogo</h2>
           <p className="section__subtitle">
-            Elegí cómo querés comprar.
+            Elige cómo quieres comprar.
           </p>
         </section>
         <CategoryChips
