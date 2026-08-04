@@ -12,7 +12,10 @@ function ProductDetail() {
   const [searchParams] = useSearchParams()
   const cat = searchParams.get('cat') || 'unidad'
   const product = products.find((item) => item.id === Number(id))
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState(() => {
+    const talla = searchParams.get('talla')
+    return product && product.sizes.includes(talla) ? talla : ''
+  })
   const [activeIndex, setActiveIndex] = useState(0)
 
   if (!product) {
@@ -39,7 +42,7 @@ function ProductDetail() {
   const displayPrice = priceForCategory(product, cat)
   const isPromo = cat === 'promocion'
   const categoryText = isPromo ? `Promo 3x${formatPrice(PROMO_BUNDLE_PRICE)}` : categoryLabel(cat)
-  const productUrl = `${window.location.origin}/producto/${product.id}?cat=${cat}`
+  const productUrl = `${window.location.origin}/producto/${product.id}?cat=${cat}&talla=${selectedSize}`
   const message = isPromo
     ? `Hola BodySuits and Sport 👋\n\nQuiero consultar por la promo:\n• Producto: ${product.name}\n• Talla: ${selectedSize}\n• Promo: 3 bodys por ${formatPrice(PROMO_BUNDLE_PRICE)} (≈${formatPrice(PROMO_UNIT_PRICE)} c/u)\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
     : `Hola BodySuits and Sport 👋\n\nQuiero consultar por:\n• Producto: ${product.name}\n• Talla: ${selectedSize}\n• Modo: ${categoryText}\n• Precio: ${formatPrice(displayPrice)}\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
