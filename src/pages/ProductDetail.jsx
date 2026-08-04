@@ -16,7 +16,14 @@ function ProductDetail() {
     const talla = searchParams.get('talla')
     return product && product.sizes.includes(talla) ? talla : ''
   })
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const imgRaw = searchParams.get('img')
+    if (!product || !imgRaw) return 0
+    const img = Number(imgRaw)
+    if (!Number.isInteger(img) || img < 0) return 0
+    const total = 1 + (product.gallery ? product.gallery.length : 0)
+    return img < total ? img : 0
+  })
 
   if (!product) {
     return (
@@ -42,7 +49,7 @@ function ProductDetail() {
   const displayPrice = priceForCategory(product, cat)
   const isPromo = cat === 'promocion'
   const categoryText = isPromo ? `Promo 3x${formatPrice(PROMO_BUNDLE_PRICE)}` : categoryLabel(cat)
-  const productUrl = `${window.location.origin}/producto/${product.id}?cat=${cat}&talla=${selectedSize}`
+  const productUrl = `${window.location.origin}/producto/${product.id}?cat=${cat}&talla=${selectedSize}&img=${activeIndex}`
   const message = isPromo
     ? `Hola BodySuits and Sport 👋\n\nQuiero consultar por la promo:\n• Producto: ${product.name}\n• Talla: ${selectedSize}\n• Promo: 3 bodys por ${formatPrice(PROMO_BUNDLE_PRICE)} (≈${formatPrice(PROMO_UNIT_PRICE)} c/u)\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
     : `Hola BodySuits and Sport 👋\n\nQuiero consultar por:\n• Producto: ${product.name}\n• Talla: ${selectedSize}\n• Modo: ${categoryText}\n• Precio: ${formatPrice(displayPrice)}\n\n🔗 Ver producto: ${productUrl}\n\n¿Está disponible? ¡Gracias!`
